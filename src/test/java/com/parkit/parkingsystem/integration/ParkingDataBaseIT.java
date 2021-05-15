@@ -59,32 +59,30 @@ public class ParkingDataBaseIT {
 		parkingService.processIncomingVehicle();
         Ticket ticket = new Ticket();
              
-        ticket.setVehicleRegNumber("ABCDEF"); //je crÃ©e un ticket        
+        ticket.setVehicleRegNumber("ABCDEF"); //je crée un ticket        
         ticket.setId(1);
         
         assertTrue(ticket.equals(ticketDAO.getTicket("ABCDEF")));  //je verifie que le ticket est en DB
         assertFalse(ticketDAO.getTicket("ABCDEF").getParkingSpot().isAvailable());  //assert la place de parking est update            		
 	}
 
-	// TODO: check that the fare generated and out time are populated correctly in the database
+	// Done: check that the fare generated and out time are populated correctly in the database
 	@Test
 	public void testParkingLotExit() {
 		testParkingACar();
-		Ticket ticket = ticketDAO.getTicket("ABCDEF");
-		System.out.println(ticket.getInTime());
-		Date date = ticket.getInTime();
+		Date date = ticketDAO.getTicket("ABCDEF").getInTime();
 		
 		try {
 			when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
 		} catch (Exception e) {
-			System.err.println("Le reader n'a pas fonctionnÃ©");
+			System.err.println("Le reader n'a pas fonctionné");
 		}
 		
 		ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);			
-		parkingService.processExitingVehicle();		
+		parkingService.processExitingVehicle();
 		
 		assertTrue(date.getTime() <= ticketDAO.getTicket("ABCDEF").getOutTime().getTime());
-		assertTrue( 0 == ticketDAO.getTicket("ABCDEF").getPrice());
+		assertEquals( 0, ticketDAO.getTicket("ABCDEF").getPrice());			
 	}
 
 }
