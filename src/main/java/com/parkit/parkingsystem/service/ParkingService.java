@@ -32,8 +32,7 @@ public class ParkingService {
 			if (parkingSpot != null && parkingSpot.getId() > 0) {
 				String vehicleRegNumber = getVehichleRegNumber();
 				parkingSpot.setAvailable(false);
-				parkingSpotDAO.updateParking(parkingSpot); // allot this parking space and mark it's availability as
-															// false
+				parkingSpotDAO.updateParking(parkingSpot); // allot this parking space and mark it's availability as false
 
 				boolean reduction = getReduction(vehicleRegNumber);
 
@@ -81,7 +80,7 @@ public class ParkingService {
 		return parkingSpot;
 	}
 
-	public boolean getReduction(String vehicleRegNumber) {
+	private boolean getReduction(String vehicleRegNumber) {
 		if (ticketDAO.getOccurence(vehicleRegNumber)) {
 			System.out.println(
 					"Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.");

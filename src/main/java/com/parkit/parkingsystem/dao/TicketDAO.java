@@ -83,7 +83,7 @@ public class TicketDAO {
 		} finally {
 			dataBaseConfig.closeConnection(con);
 		}
-		return false;
+		return false; 
 	}
 
 	public boolean getOccurence(String vehicleRegNumber) {
@@ -104,7 +104,7 @@ public class TicketDAO {
 		} finally {
 			dataBaseConfig.closeConnection(con);
 		}
-		return occurence;
+		return occurence; 
 	}
 
 }

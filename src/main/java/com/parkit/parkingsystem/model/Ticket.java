@@ -66,7 +66,7 @@ public class Ticket {
 	public void setReduction(boolean reduction) {
 		this.reduction = reduction;
 	}
-	
+
 	public boolean equals(Ticket ticket) {
 		return this.getId() == ticket.getId();
 	}

@@ -57,13 +57,13 @@ public class ParkingDataBaseIT {
 	public void testParkingACar() {		    
 		ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
 		parkingService.processIncomingVehicle();
-        Ticket ticket = new Ticket();
-             
-        ticket.setVehicleRegNumber("ABCDEF"); //je crée un ticket        
+		
+        Ticket ticket = new Ticket();           //je crée un ticket  
+        ticket.setVehicleRegNumber("ABCDEF");       
         ticket.setId(1);
         
-        assertTrue(ticket.equals(ticketDAO.getTicket("ABCDEF")));  //je verifie que le ticket est en DB
-        assertFalse(ticketDAO.getTicket("ABCDEF").getParkingSpot().isAvailable());  //assert la place de parking est update            		
+        assertTrue(ticket.equals(ticketDAO.getTicket("ABCDEF")));  //verifie que le ticket est en DB
+        assertFalse(ticketDAO.getTicket("ABCDEF").getParkingSpot().isAvailable());  //verifie que la place de parking est update            		
 	}
 
 	// Done: check that the fare generated and out time are populated correctly in the database
